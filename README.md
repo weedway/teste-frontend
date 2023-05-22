@@ -1,6 +1,11 @@
 # Teste tecnologia WeedWay
 
-Constuir um clone de funcionalidade mínima do (todoist)[https://todoist.com/pt-BR] utilizando a seguinte stack:
+Constuir um clone de funcionalidade mínima do (todoist)[https://todoist.com/pt-BR] 
+
+Você deve construir a feature de checklist e mais uma a sua escolha.
+Não é necessário desenvolver backend, você pode mockar as chamadas para o back com estado local no front.
+
+Utilize a seguinte stack:
 
 - Vue3
 - Vite
@@ -19,3 +24,5 @@ Serão avaliados:
 Não são importantes para a avaliação:
 - Visual do projeto não precisa ser perfeito, focar em um projeto simples, mas mostrar que sabe estruturar tailwind
 - Estamos buscando um candidato que consiga iterar rápido e entregar produtos utilizáveis rápido - priorize a boa execução de algumas features em vez de tentar fazer um app complexo e demorado
+
+Faça os commits para este repositório em uma branch separada e abra uma PR. A organização dos commits e da PR também será avaliada.
