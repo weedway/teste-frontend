@@ -21,7 +21,10 @@ function handleShowAddTaskCard(value: boolean): void {
     <button @click="handleShowAddTaskCard(true)">Adicionar tarefa</button>
   </div>
 
-  <AddTask v-if="showAddTasks === true"></AddTask>
+  <AddTask
+    v-if="showAddTasks === true"
+    @close-card="handleShowAddTaskCard(false)"
+  ></AddTask>
 
   <ListTask></ListTask>
 </template>

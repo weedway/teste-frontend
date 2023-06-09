@@ -6,7 +6,7 @@ const taskState = useTaskStore();
 
 <template>
   <div>
-    <div v-for="task in taskState.tasks">
+    <div v-for="task in taskState.tasks" :key="task.id">
       <h3>{{ task.name }}</h3>
 
       <p>{{ task.description }}</p>
@@ -20,15 +20,3 @@ const taskState = useTaskStore();
     </div>
   </div>
 </template>
-
-<style scoped>
-.status-tab {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 60%;
-  height: 40px;
-  background-color: red;
-  margin: 40px auto 0 auto;
-}
-</style>

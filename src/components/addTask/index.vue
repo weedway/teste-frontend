@@ -1,28 +1,37 @@
 <script setup lang="ts">
+import { ref, Ref } from 'vue';
+import { Task } from '../../interfaces';
 import { useTaskStore } from '../../store/tasks';
 
 const taskState = useTaskStore();
+const auxTask: Ref<Task> = ref({} as Task);
+
+function addTaskToState(): void {
+  taskState.addTask(auxTask.value);
+}
 </script>
 
 <template>
-  <div class="add-task-card">
-    add task card
+  <div class="flex w-3/5 h-32 rounded-2xl mx-auto border-gray-500 border">
+    <label for="name">Sobre o que é essa tarefa?</label>
+    <input type="text" name="name" id="name" v-model="auxTask.name" />
+
+    <label for="date">Quando irá ocorrer esta tarefa?</label>
+    <input type="date" name="date" id="date" v-model="auxTask.date" />
+
+    <label for="">Diga mais sobre esta tarefa!</label>
+    <textarea
+      name="description"
+      id="description"
+      cols="30"
+      rows="10"
+      v-model="auxTask.description"
+    ></textarea>
 
     <div>
-      <button>Cancelar</button>
+      <button @click="$emit('closeCard')">Cancelar</button>
 
-      <button>Adicionar tarefa</button>
+      <button @click="addTaskToState()">Adicionar tarefa</button>
     </div>
   </div>
 </template>
-
-<style scoped>
-.add-task-card {
-  display: flex;
-  width: 60%;
-  height: 130px;
-  border-radius: 15px;
-  border: 1px solid gray;
-  margin: 0 auto;
-}
-</style>
