@@ -2,8 +2,10 @@
 
 <template>
   <div class="flex justify-between items-center w-full h-10 bg-red-600">
-    <div>menu icon</div>
+    <div class="pl-4 cursor-pointer">
+      <font-awesome-icon icon="fa-solid fa-bars" />
+    </div>
 
-    <h1>Todo List app</h1>
+    <h1 class="pr-4">Todo List app</h1>
   </div>
 </template>
