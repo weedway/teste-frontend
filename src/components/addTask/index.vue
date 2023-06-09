@@ -12,7 +12,7 @@ function addTaskToState(): void {
 </script>
 
 <template>
-  <div class="flex w-3/5 h-32 rounded-2xl mx-auto border-gray-500 border">
+  <div class="flex w-3/5 h-32 rounded-2xl mx-auto mt-2 border-gray-500 border">
     <label for="name">Sobre o que é essa tarefa?</label>
     <input type="text" name="name" id="name" v-model="auxTask.name" />
 

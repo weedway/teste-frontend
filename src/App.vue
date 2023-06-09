@@ -17,8 +17,14 @@ function handleShowAddTaskCard(value: boolean): void {
 
   <StatusTab></StatusTab>
 
-  <div v-if="showAddTasks === false">
-    <button @click="handleShowAddTaskCard(true)">Adicionar tarefa</button>
+  <div
+    v-if="showAddTasks === false"
+    class="mx-auto px-4 mt-3 mb-8 flex items-center gap-2 border w-fit rounded-md hover:bg-slate-400"
+  >
+    <font-awesome-icon icon="fa-solid fa-plus" />
+    <button @click="handleShowAddTaskCard(true)" class="text-base">
+      Adicionar tarefa
+    </button>
   </div>
 
   <AddTask
@@ -26,7 +32,7 @@ function handleShowAddTaskCard(value: boolean): void {
     @close-card="handleShowAddTaskCard(false)"
   ></AddTask>
 
-  <ListTask></ListTask>
+  <ListTask v-if="showAddTasks === false"></ListTask>
 </template>
 
 <style scoped></style>

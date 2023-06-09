@@ -5,7 +5,7 @@ const taskState = useTaskStore();
 </script>
 
 <template>
-  <div>
+  <div class="w-3/5 mx-auto">
     <div v-for="task in taskState.tasks" :key="task.id">
       <h3>{{ task.name }}</h3>
 
