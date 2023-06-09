@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import Header from './components/header/index.vue';
 import StatusTab from './components/statusTab/index.vue';
 import ListTask from './components/listTask/index.vue';
-import { Task } from './interfaces';
+import AddTask from './components/addTask/index.vue';
 
-const mockArray: Task[] = [];
+const showAddTasks = ref(false);
+
+function handleShowAddTaskCard(value: boolean): void {
+  showAddTasks.value = value;
+}
 </script>
 
 <template>
@@ -12,7 +17,13 @@ const mockArray: Task[] = [];
 
   <StatusTab></StatusTab>
 
-  <ListTask v-bind:array-of-tasks="mockArray"></ListTask>
+  <div v-if="showAddTasks === false">
+    <button @click="handleShowAddTaskCard(true)">Adicionar tarefa</button>
+  </div>
+
+  <AddTask v-if="showAddTasks === true"></AddTask>
+
+  <ListTask></ListTask>
 </template>
 
 <style scoped></style>

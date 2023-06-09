@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import { Task } from '../../interfaces/index';
+import { useTaskStore } from '../../store/tasks';
 
-defineProps<{ arrayOfTasks: Task[] }>();
+const taskState = useTaskStore();
 </script>
 
 <template>
   <div>
-    <button>Adicionar tarefa</button>
-  </div>
-
-  <div>
-    <div v-for="task in arrayOfTasks">
+    <div v-for="task in taskState.tasks">
       <h3>{{ task.name }}</h3>
 
       <p>{{ task.description }}</p>
@@ -18,7 +14,7 @@ defineProps<{ arrayOfTasks: Task[] }>();
       <span>{{ task.date }}</span>
     </div>
 
-    <div v-if="arrayOfTasks.length === 0">
+    <div v-if="taskState.tasks.length === 0">
       Não há tarefas cadastradas, deseja adicionar alguma? Clique no botão
       acima!
     </div>

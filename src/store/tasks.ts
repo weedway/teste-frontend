@@ -1,11 +1,8 @@
-import { defineStore } from 'pinia';
+import { defineStore, acceptHMRUpdate } from 'pinia';
 import { Task } from '../interfaces';
 
-export const useCounterStore = defineStore('tasks', {
+export const useTaskStore = defineStore('tasks', {
   state: () => ({ tasks: [] as Task[] }),
-  getters: {
-    tasks: (state) => state.tasks,
-  },
   actions: {
     addTask(task: Task) {
       this.tasks.push(task);
@@ -17,3 +14,7 @@ export const useCounterStore = defineStore('tasks', {
     },
   },
 });
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useTaskStore, import.meta.hot));
+}
