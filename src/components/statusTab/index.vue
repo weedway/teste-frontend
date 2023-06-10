@@ -10,7 +10,7 @@ const dateFormatted = new Intl.DateTimeFormat('pt-br', {
   <div
     class="flex justify-between items-center w-3/5 h-10 mx-auto mt-10 border-b-2 pb-2"
   >
-    <div class="flex items-end gap-5">
+    <div class="flex items-end gap-4">
       <h1 class="text-2xl">Hoje</h1>
       <span class="text-xs">{{ dateFormatted }}</span>
     </div>
