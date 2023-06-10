@@ -9,37 +9,71 @@ const auxTask: Ref<Task> = ref({} as Task);
 function addTaskToState(): void {
   taskState.addTask(auxTask.value);
 }
+
+function validateForm(): boolean {
+  const { date, name } = auxTask.value;
+  return date === undefined || name === undefined || name === '';
+}
 </script>
 
 <template>
-  <div class="flex w-3/5 h-32 rounded-2xl mx-auto mt-2 border-gray-500 border">
-    <div>
+  <div class="flex w-3/5 rounded-2xl mx-auto mt-2 border-gray-500 border">
+    <div class="w-4/6 p-2 py-3">
       <div class="flex flex-col">
-        <label for="name">Sobre o que é essa tarefa?</label>
-        <input type="text" name="name" id="name" v-model="auxTask.name" />
+        <label for="name" class="text-sm">Sobre o que é essa tarefa?</label>
+        <input
+          class="outline-none px-1 text-sm text-gray-500"
+          type="text"
+          name="name"
+          id="name"
+          v-model="auxTask.name"
+        />
       </div>
 
       <div class="flex flex-col">
-        <label for="date">Quando irá ocorrer esta tarefa?</label>
-        <input type="date" name="date" id="date" v-model="auxTask.date" />
+        <label for="date" class="text-sm"
+          >Quando irá ocorrer esta tarefa?</label
+        >
+        <input
+          type="date"
+          name="date"
+          id="date"
+          class="outline-none px-1 text-sm text-gray-500"
+          v-model="auxTask.date"
+        />
       </div>
 
       <div class="flex flex-col">
-        <label for="">Diga mais sobre esta tarefa!</label>
+        <label for="description" class="text-sm"
+          >Diga mais sobre esta tarefa!</label
+        >
         <textarea
           name="description"
           id="description"
-          cols="30"
-          rows="10"
+          class="outline-none px-1 text-sm text-gray-500 resize-none"
           v-model="auxTask.description"
         ></textarea>
       </div>
     </div>
 
-    <div class="flex flex-col">
-      <button @click="$emit('closeCard')">Cancelar</button>
+    <div class="flex flex-col p-2 justify-end gap-2">
+      <button
+        @click="$emit('closeCard')"
+        class="bg-gray-200 text-sm px-3 py-2 rounded font-medium tracking-wide"
+      >
+        Cancelar
+      </button>
 
-      <button @click="addTaskToState()">Adicionar tarefa</button>
+      <button
+        class="bg-red-500 text-white text-sm px-3 py-2 rounded font-medium tracking-wide disabled:opacity-50"
+        @click="
+          addTaskToState();
+          $emit('closeCard');
+        "
+        :disabled="validateForm()"
+      >
+        Adicionar tarefa
+      </button>
     </div>
   </div>
 </template>

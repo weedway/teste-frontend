@@ -32,7 +32,7 @@ function handleShowAddTaskCard(value: boolean): void {
     @close-card="handleShowAddTaskCard(false)"
   ></AddTask>
 
-  <ListTask v-if="showAddTasks === false"></ListTask>
+  <ListTask></ListTask>
 </template>
 
 <style scoped></style>
