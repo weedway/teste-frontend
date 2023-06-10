@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, Ref } from 'vue';
-import { Task } from '../../interfaces';
+import { Task, priorityArr, Priority } from '../../interfaces';
 import { useTaskStore } from '../../store/tasks';
 
 const taskState = useTaskStore();
@@ -13,6 +13,10 @@ function addTaskToState(): void {
 function validateForm(): boolean {
   const { date, name } = auxTask.value;
   return date === undefined || name === undefined || name === '';
+}
+
+function selectPriority(type: Priority): void {
+  auxTask.value.priority = type;
 }
 </script>
 
@@ -41,6 +45,21 @@ function validateForm(): boolean {
           class="outline-none px-1 text-sm text-gray-500"
           v-model="auxTask.date"
         />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="description" class="text-sm">Qual a prioridade?</label>
+
+        <div class="flex gap-2">
+          <div
+            class="cursor-pointer capitalize"
+            v-for="priority in priorityArr"
+            :key="priority"
+            @click="selectPriority(priority)"
+          >
+            {{ priority }}
+          </div>
+        </div>
       </div>
 
       <div class="flex flex-col">

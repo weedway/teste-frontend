@@ -7,3 +7,4 @@ export interface Task {
 }
 
 export type Priority = 'high' | 'normal' | 'low';
+export const priorityArr: Array<Priority> = ['high', 'normal', 'low'];
