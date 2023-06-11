@@ -1,4 +1,7 @@
 import { defineStore, acceptHMRUpdate } from 'pinia';
+import isEqual from 'date-fns/isEqual';
+import isBefore from 'date-fns/isBefore';
+import addDays from 'date-fns/addDays';
 import { Task } from '../interfaces';
 
 export const useTaskStore = defineStore('tasks', {
@@ -6,44 +9,39 @@ export const useTaskStore = defineStore('tasks', {
   getters: {
     getDelayedTasks(state) {
       const delayedTasks = state.tasks.filter((task) => {
-        const date = new Date(task.date);
-        const now = new Date();
+        const date = new Date(task.date).setHours(0, 0, 0, 0);
+        const now = new Date().setHours(0, 0, 0, 0);
+        const formattedDate = addDays(date, 1);
 
-        return date < now && task.isDone === false;
+        return isBefore(formattedDate, now) && task.isDone === false;
       });
+
       return delayedTasks;
     },
 
     getTasksForToday(state) {
       const todayTasks = state.tasks.filter((task) => {
-        const date = new Date(task.date);
-        const today = new Date();
-        const array1 = [date.getDay() + 1, date.getMonth(), date.getFullYear()];
-        const array2 = [today.getDay(), today.getMonth(), today.getFullYear()];
+        const date = new Date(task.date).setHours(0, 0, 0, 0);
+        const now = new Date().setHours(0, 0, 0, 0);
+        const formattedDate = addDays(date, 1);
 
-        return (
-          array1[0] === array2[0] &&
-          array1[1] === array2[1] &&
-          array1[2] === array2[2] &&
-          task.isDone === false
-        );
+        return isEqual(formattedDate, now) && task.isDone === false;
       });
 
       return todayTasks;
     },
-
-    shouldShowTasks(state) {
-      return (
-        state.tasks.length !== 0 &&
-        !!state.tasks.find((task) => task.isDone === false)
-      );
-    },
   },
   actions: {
+    getTasksFromAPI() {
+      // Simulate api call with fetch
+      setTimeout(() => {
+        this.tasks = [];
+      }, 2000);
+    },
+
     addTask(task: Task) {
       const id = this.tasks.length + 1;
       task.id = id;
-      task.isDone = false;
 
       this.tasks.push(task);
     },

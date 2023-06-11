@@ -25,7 +25,11 @@ defineProps<{ list: Task[]; isDelayed: boolean }>();
 <template>
   <div class="flex flex-col gap-5">
     <div class="flex" v-for="task in list" :key="task.id">
-      <input class="mr-3" type="checkbox" @change="markAsDone(task.id)" />
+      <input
+        class="mr-3 w-4 h-4 self-center"
+        type="radio"
+        @change="markAsDone(task.id)"
+      />
 
       <div class="flex flex-col gap-1">
         <h3 class="text-xl">{{ task.name }}</h3>

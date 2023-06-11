@@ -4,7 +4,10 @@ import { Task, priorityArr, Priority } from '../../interfaces';
 import { useTaskStore } from '../../store/tasks';
 
 const taskState = useTaskStore();
-const auxTask: Ref<Task> = ref({} as Task);
+const auxTask: Ref<Task> = ref({
+  isDone: false,
+  priority: 'normal',
+} as Task);
 
 function addTaskToState(): void {
   taskState.addTask(auxTask.value);
@@ -52,10 +55,14 @@ function selectPriority(type: Priority): void {
 
         <div class="flex gap-2">
           <div
-            class="cursor-pointer capitalize"
+            class="cursor-pointer capitalize px-1 rounded-md"
             v-for="priority in priorityArr"
             :key="priority"
             @click="selectPriority(priority)"
+            :class="{
+              'bg-red-500': priority === auxTask.priority,
+              'text-white': priority === auxTask.priority,
+            }"
           >
             {{ priority }}
           </div>

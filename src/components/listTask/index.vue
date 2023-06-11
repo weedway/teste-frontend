@@ -14,7 +14,12 @@ const weekday = new Intl.DateTimeFormat('pt-br', {
 
 <template>
   <div class="w-3/5 mx-auto flex flex-col">
-    <div v-if="taskState.shouldShowTasks === true">
+    <div
+      v-if="
+        taskState.getDelayedTasks.length !== 0 ||
+        taskState.getTasksForToday.length !== 0
+      "
+    >
       <div class="mb-6" v-if="taskState.getDelayedTasks.length !== 0">
         <h1
           class="mb-2 border-b-2 lin font-medium leading-7 text-sm task-border-bottom"
@@ -47,7 +52,10 @@ const weekday = new Intl.DateTimeFormat('pt-br', {
     </div>
 
     <div
-      v-if="taskState.shouldShowTasks === false"
+      v-if="
+        taskState.getDelayedTasks.length === 0 &&
+        taskState.getTasksForToday.length === 0
+      "
       class="mt-10 text-center w-1/2 mx-auto leading-8"
     >
       <img

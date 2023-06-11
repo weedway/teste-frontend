@@ -23,10 +23,11 @@ const filterByPriority = ref(false);
       <span class="text-xs">{{ dateFormatted }}</span>
     </div>
 
-    <div class="relative">
-      <div class="cursor-pointer" @click="showFilter = !showFilter">
-        <font-awesome-icon icon="fa-solid fa-filter" />
-      </div>
+    <div
+      class="relative px-1 hover:bg-gray-200 transition duration-200 cursor-pointer"
+      @click="showFilter = !showFilter"
+    >
+      <font-awesome-icon icon="fa-solid fa-filter" />
 
       <div
         v-if="showFilter"
