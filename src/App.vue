@@ -19,12 +19,11 @@ function handleShowAddTaskCard(value: boolean): void {
 
   <div
     v-if="showAddTasks === false"
+    @click="handleShowAddTaskCard(true)"
     class="mx-auto px-4 mt-3 mb-8 flex items-center gap-2 border w-fit cursor-pointer rounded-md hover:text-white hover:bg-slate-400 transition duration-300"
   >
     <font-awesome-icon icon="fa-solid fa-plus" />
-    <button @click="handleShowAddTaskCard(true)" class="text-base">
-      Adicionar tarefa
-    </button>
+    <button class="text-base">Adicionar tarefa</button>
   </div>
 
   <AddTask

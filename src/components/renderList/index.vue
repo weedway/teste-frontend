@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTaskStore } from '../../store/tasks';
-import { Task } from '../../interfaces';
+import { Task, priorityArr } from '../../interfaces';
 
 const taskState = useTaskStore();
 
@@ -40,6 +40,16 @@ defineProps<{ list: Task[]; isDelayed: boolean }>();
           returnFormattedDate(task.date)
         }}</span>
       </div>
+
+      <span
+        v-if="task.priority !== 'normal'"
+        class="text-xs text-white self-center ml-10 p-1 uppercase rounded-lg"
+        :class="{
+          'bg-red-600': task.priority === priorityArr[0],
+          'bg-blue-300': task.priority === priorityArr[2],
+        }"
+        >{{ task.priority }}</span
+      >
 
       <div class="h-fit cursor-pointer self-center ml-auto">
         <font-awesome-icon icon="fa-solid fa-trash" />

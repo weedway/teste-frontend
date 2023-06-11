@@ -5,7 +5,5 @@
     <div class="pl-4 cursor-pointer">
       <font-awesome-icon icon="fa-solid fa-bars" />
     </div>
-
-    <h1 class="pr-4">Todo List app</h1>
   </div>
 </template>
