@@ -64,6 +64,34 @@ export const useTaskStore = defineStore('tasks', {
 
       return auxTasks;
     },
+
+    filterTasksByName(isAscending: boolean) {
+      const auxTasks = this.tasks.sort((left, right) => {
+        if (left.name < right.name) {
+          return isAscending ? -1 : 1;
+        }
+
+        if (left.name > right.name) {
+          return isAscending ? 1 : -1;
+        }
+
+        return 0;
+      });
+
+      this.tasks = auxTasks;
+    },
+
+    filterTasksByPriority(isHighFirst: boolean) {
+      const highOrder = this.tasks.filter((task) => task.priority === 'high');
+      const normalOrder = this.tasks.filter(
+        (task) => task.priority === 'normal'
+      );
+      const lowOrder = this.tasks.filter((task) => task.priority === 'low');
+
+      this.tasks = isHighFirst
+        ? [...highOrder, ...normalOrder, ...lowOrder]
+        : [...lowOrder, ...normalOrder, ...highOrder];
+    },
   },
 });
 
