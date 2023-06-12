@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useTaskStore } from './store/tasks';
 import Header from './components/header/index.vue';
 import StatusTab from './components/statusTab/index.vue';
 import ListTask from './components/listTask/index.vue';
 import AddTask from './components/addTask/index.vue';
+import Loader from './components/loader/index.vue';
 
 const showAddTasks = ref(false);
+const taskStore = useTaskStore();
+
+onMounted(() => {
+  taskStore.getTasksFromAPI();
+});
 
 function handleShowAddTaskCard(value: boolean): void {
   showAddTasks.value = value;
@@ -13,6 +20,8 @@ function handleShowAddTaskCard(value: boolean): void {
 </script>
 
 <template>
+  <Loader v-if="taskStore.loadingTasks"></Loader>
+
   <Header></Header>
 
   <StatusTab></StatusTab>

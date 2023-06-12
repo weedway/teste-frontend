@@ -10,6 +10,7 @@ import {
   faArrowUpAZ,
   faArrowDownAZ,
   faTriangleExclamation,
+  faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 import App from './App.vue';
@@ -22,6 +23,7 @@ library.add(faFilter);
 library.add(faArrowUpAZ);
 library.add(faArrowDownAZ);
 library.add(faTriangleExclamation);
+library.add(faSpinner);
 
 createApp(App)
   .use(pinia)

@@ -5,7 +5,7 @@ import addDays from 'date-fns/addDays';
 import { Task } from '../interfaces';
 
 export const useTaskStore = defineStore('tasks', {
-  state: () => ({ tasks: [] as Task[] }),
+  state: () => ({ tasks: [] as Task[], loadingTasks: false }),
   getters: {
     getDelayedTasks(state) {
       const delayedTasks = state.tasks.filter((task) => {
@@ -34,8 +34,11 @@ export const useTaskStore = defineStore('tasks', {
   actions: {
     getTasksFromAPI() {
       // Simulate api call with fetch
+      this.loadingTasks = true;
+
       setTimeout(() => {
         this.tasks = [];
+        this.loadingTasks = false;
       }, 2000);
     },
 
